@@ -24,10 +24,6 @@ public class Ball : MonoBehaviour {
 			gc.running = true;
 		}
 
-		// Check position to reflect on upper and lower bound
-		if (Mathf.Abs(transform.position.y) >= gc.maxY) {
-			rb.velocity = new Vector3(rb.velocity.x, -rb.velocity.y, 0);
-		}
 
 		// Check if someone has won
 		if (Mathf.Abs (transform.position.x) > gc.maxX) {
@@ -42,6 +38,14 @@ public class Ball : MonoBehaviour {
 			}
 		}
 	}
+
+	void FixedUpdate() {
+		// Check position to reflect on upper and lower bound
+		if (Mathf.Abs(transform.position.y) >= gc.maxY) {
+			rb.velocity = new Vector3(rb.velocity.x, -rb.velocity.y, 0);
+		}
+	}
+
 		
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
